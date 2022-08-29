@@ -59,8 +59,8 @@ public class TicTacToe {
       } else if (count == -3) {
         System.out.println("0 wins!!");
         break;
-      } else {
-        System.out.println("Döntetlen:)");
+      } else if (i == 8){
+        System.out.println("Döntetlen :-)");
       }
     }
 
@@ -136,6 +136,7 @@ public class TicTacToe {
 
   public static int checkWin(char[][] board) {
     int count = 0;
+
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[i].length; j++) {
         if (board[i][j] == 'X') {
@@ -151,6 +152,46 @@ public class TicTacToe {
         count = 0;
       }
     }
+
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < board.length; j++) {
+        if (board[j][i] == 'X') {
+          count++;
+        } else if (board[j][i] == 'O') {
+          count--;
+        }
+      }
+
+      if (count == 3 || count == -3) {
+        return count;
+      } else {
+        count = 0;
+      }
+    }
+
+    for (int i = 0; i < 3; i++) {
+      if (board[i][i] == 'X') {
+        count++;
+      } else if (board[i][i] == 'O') {
+        count--;
+      }
+
+      if (count == 3 || count == -3) {
+        return count;
+      } else {
+        count = 0;
+      }
+    }
+
+    for (int i = 0; i < 3; i++) {
+      int rowIndex = 2 - i;
+      if (board[rowIndex][i] == 'X') {
+        count++;
+      } else if (board[rowIndex][i] == 'O') {
+        count--;
+      }
+    }
+
     return count;
   }
 
